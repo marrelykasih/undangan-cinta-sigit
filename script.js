@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 2. LOGIKA LIGHTBOX FOTO GALERI (MEMBESAR SAAT DIKLIK) ---
+    // --- 2. LOGIKA LIGHTBOX FOTO GALERI ---
     const galleryImages = document.querySelectorAll('.gallery-img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const revealElements = document.querySelectorAll('.reveal-color');
     revealElements.forEach(el => { colorObserver.observe(el); });
 
-    // --- 4. LOGIKA COUNTDOWN TIMER ---
-    const weddingDate = new Date(2026, 0, 27, 8, 0, 0).getTime(); 
+    // --- 4. LOGIKA COUNTDOWN TIMER (Tahun 2027) ---
+    const weddingDate = new Date(2027, 0, 27, 8, 0, 0).getTime(); 
 
     const timerInterval = setInterval(function() {
         const now = new Date().getTime();
@@ -98,4 +98,34 @@ function copyRekening(elementId) {
     }).catch(err => {
         alert("Gagal menyalin. Silakan salin manual.");
     });
+}
+
+// --- 6. LOGIKA KIRIM RSVP KE WHATSAPP ---
+function kirimRSVP() {
+    const nama = document.getElementById('nama-rsvp').value;
+    const ucapan = document.getElementById('ucapan-rsvp').value;
+    const kehadiran = document.getElementById('kehadiran-rsvp').value;
+
+    if(!nama || !ucapan || !kehadiran) {
+        alert("Mohon isi nama, ucapan, dan konfirmasi kehadiran dulu ya!");
+        return;
+    }
+
+    // GANTI DENGAN NOMOR WA KAMU (Gunakan awalan 62 tanpa angka 0)
+    const nomorWA = "6283171893048"; 
+    
+    const pesan = `Halo, saya *${nama}*.\n\nSaya ingin mengonfirmasi bahwa saya *${kehadiran}* di acara pernikahan Cinta & Sigit.\n\n*Ucapan & Doa:*\n"${ucapan}"`;
+    const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+    
+    window.open(linkWA, '_blank');
+
+    const board = document.querySelector('.wishes-board');
+    const newCard = document.createElement('div');
+    newCard.classList.add('wish-card');
+    newCard.innerHTML = `<h4>${nama}</h4><p>${ucapan}</p>`;
+    board.prepend(newCard);
+
+    document.getElementById('nama-rsvp').value = '';
+    document.getElementById('ucapan-rsvp').value = '';
+    document.getElementById('kehadiran-rsvp').value = '';
 }

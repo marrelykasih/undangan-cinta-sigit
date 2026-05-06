@@ -59,11 +59,9 @@
             <span class="verse-reference">Q.S. Ar-Rum: 21</span>
         </section>
 
-        <!-- Mempelai Wanita (Warna Pink + Frame Bunga) -->
+        <!-- Mempelai Wanita -->
         <section class="section profile bride-bg full-screen reveal-color">
-            <!-- Frame Bunga Khusus Section Ini -->
             <img src="frame-bunga.png" alt="Frame Bunga" class="profile-frame">
-            
             <div class="profile-content">
                 <p class="title-label">The Bride</p>
                 <div class="frame-foto">
@@ -74,11 +72,9 @@
             </div>
         </section>
 
-        <!-- Mempelai Pria (Warna Hijau + Frame Bunga) -->
+        <!-- Mempelai Pria -->
         <section class="section profile groom-bg full-screen reveal-color">
-            <!-- Frame Bunga Khusus Section Ini -->
             <img src="frame-bunga.png" alt="Frame Bunga" class="profile-frame">
-            
             <div class="profile-content">
                 <p class="title-label">The Groom</p>
                 <div class="frame-foto">
@@ -110,32 +106,32 @@
             </div>
         </section>
 
-        <!-- Galeri Memory Lane -->
+        <!-- Galeri Memory Lane 2 Baris -->
         <section class="section gallery-running-section reveal-color">
             <h2 style="margin-bottom: 10px;">Memory Lane</h2>
             <p style="font-size: 0.8rem; color: #849a7a; margin-bottom: 25px;">Ketuk foto untuk memperbesar</p>
             
             <div class="marquee-container">
                 <div class="marquee-track track-1">
-                    <img src="galeri1.jpg" alt="Kenangan 1" class="gallery-img">
-                    <img src="galeri2.jpg" alt="Kenangan 2" class="gallery-img style-2">
-                    <img src="galeri3.jpg" alt="Kenangan 3" class="gallery-img style-3">
-                    <img src="galeri4.jpg" alt="Kenangan 4" class="gallery-img">
-                    <img src="galeri1.jpg" alt="Kenangan 1" class="gallery-img">
-                    <img src="galeri2.jpg" alt="Kenangan 2" class="gallery-img style-2">
-                    <img src="galeri3.jpg" alt="Kenangan 3" class="gallery-img style-3">
-                    <img src="galeri4.jpg" alt="Kenangan 4" class="gallery-img">
+                    <img src="galeri1.jpg" alt="Kenangan" class="gallery-img">
+                    <img src="galeri2.jpg" alt="Kenangan" class="gallery-img style-2">
+                    <img src="galeri3.jpg" alt="Kenangan" class="gallery-img style-3">
+                    <img src="galeri4.jpg" alt="Kenangan" class="gallery-img">
+                    <img src="galeri1.jpg" alt="Kenangan" class="gallery-img">
+                    <img src="galeri2.jpg" alt="Kenangan" class="gallery-img style-2">
+                    <img src="galeri3.jpg" alt="Kenangan" class="gallery-img style-3">
+                    <img src="galeri4.jpg" alt="Kenangan" class="gallery-img">
                 </div>
                 
                 <div class="marquee-track track-2">
-                    <img src="galeri5.jpg" alt="Kenangan 5" class="gallery-img style-3">
-                    <img src="galeri1.jpg" alt="Kenangan 6" class="gallery-img">
-                    <img src="galeri2.jpg" alt="Kenangan 7" class="gallery-img style-2">
-                    <img src="galeri3.jpg" alt="Kenangan 8" class="gallery-img">
-                    <img src="galeri5.jpg" alt="Kenangan 5" class="gallery-img style-3">
-                    <img src="galeri1.jpg" alt="Kenangan 6" class="gallery-img">
-                    <img src="galeri2.jpg" alt="Kenangan 7" class="gallery-img style-2">
-                    <img src="galeri3.jpg" alt="Kenangan 8" class="gallery-img">
+                    <img src="galeri5.jpg" alt="Kenangan" class="gallery-img style-3">
+                    <img src="galeri1.jpg" alt="Kenangan" class="gallery-img">
+                    <img src="galeri2.jpg" alt="Kenangan" class="gallery-img style-2">
+                    <img src="galeri3.jpg" alt="Kenangan" class="gallery-img">
+                    <img src="galeri5.jpg" alt="Kenangan" class="gallery-img style-3">
+                    <img src="galeri1.jpg" alt="Kenangan" class="gallery-img">
+                    <img src="galeri2.jpg" alt="Kenangan" class="gallery-img style-2">
+                    <img src="galeri3.jpg" alt="Kenangan" class="gallery-img">
                 </div>
             </div>
         </section>
@@ -150,19 +146,19 @@
         <section class="section rsvp-section reveal-color">
             <h2>RSVP & Ucapan</h2>
             <form id="rsvp-form" class="form-container">
-                <input type="text" placeholder="Nama Anda" required>
-                <textarea rows="4" placeholder="Berikan Ucapan & Doa..." required></textarea>
-                <select required>
+                <input type="text" id="nama-rsvp" placeholder="Nama Anda" required>
+                <textarea id="ucapan-rsvp" rows="4" placeholder="Berikan Ucapan & Doa..." required></textarea>
+                <select id="kehadiran-rsvp" required>
                     <option value="" disabled selected>Konfirmasi Kehadiran</option>
                     <option value="Hadir">Ya, Saya Akan Hadir</option>
                     <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
                 </select>
-                <button type="button" class="btn btn-rsvp" onclick="alert('Terima kasih atas konfirmasinya!')">Kirim RSVP</button>
+                <button type="button" class="btn btn-rsvp" onclick="kirimRSVP()">Kirim RSVP</button>
             </form>
 
             <div class="wishes-board">
                 <div class="wish-card">
-                    <h4>Ian</h4>
+                    <h4>ayam</h4>
                     <p>Lancar sampai hari H ya Bibup! Bahagia selalu kalian berdua. 🤍</p>
                 </div>
                 <div class="wish-card">
