@@ -9,7 +9,6 @@
 </head>
 <body>
 
-    <!-- Audio Player -->
     <audio id="bg-music" loop>
         <source src="lagu-romantis.mp3" type="audio/mpeg">
     </audio>
@@ -25,6 +24,13 @@
             <div class="flap"></div>
             <div class="envelope-front"></div>
         </div>
+        
+        <!-- NAMA TAMU -->
+        <div class="guest-info">
+            <p>Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <h2 id="guest-name">Nama Tamu</h2>
+        </div>
+
         <button id="btn-buka" class="btn">Buka Undangan</button>
     </div>
 
@@ -42,7 +48,7 @@
             </div>
         </section>
 
-        <!-- Timer Countdown -->
+        <!-- Timer -->
         <section class="section timer-section reveal-color">
             <p class="title-label" style="color: #5b7051; font-size: 2rem;">Menuju Hari Bahagia</p>
             <div class="countdown">
@@ -85,7 +91,7 @@
             </div>
         </section>
 
-        <!-- Jadwal Resepsi & Lokasi -->
+        <!-- Jadwal & Lokasi -->
         <section class="section schedule full-screen">
             <h2>Jadwal & Lokasi</h2>
             <div class="card-schedule">
@@ -136,33 +142,32 @@
             </div>
         </section>
 
-        <!-- Lightbox Pop-up -->
-        <div id="lightbox" class="lightbox">
-            <span class="close-lightbox">&times;</span>
-            <img id="lightbox-img" src="" alt="Zoom Foto">
-        </div>
-
         <!-- RSVP & Ucapan -->
         <section class="section rsvp-section reveal-color">
             <h2>RSVP & Ucapan</h2>
             <form id="rsvp-form" class="form-container">
                 <input type="text" id="nama-rsvp" placeholder="Nama Anda" required>
                 <textarea id="ucapan-rsvp" rows="4" placeholder="Berikan Ucapan & Doa..." required></textarea>
-                <select id="kehadiran-rsvp" required>
-                    <option value="" disabled selected>Konfirmasi Kehadiran</option>
-                    <option value="Hadir">Ya, Saya Akan Hadir</option>
-                    <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
-                </select>
+                
+                <div class="form-row">
+                    <select id="kehadiran-rsvp" required>
+                        <option value="" disabled selected>Kehadiran</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Tidak Hadir">Tidak Hadir</option>
+                    </select>
+                    <input type="number" id="jumlah-tamu" placeholder="Jml Orang" min="1" max="5">
+                </div>
+
                 <button type="button" class="btn btn-rsvp" onclick="kirimRSVP()">Kirim RSVP</button>
             </form>
 
-            <div class="wishes-board">
+            <div class="wishes-board" id="wishes-board">
                 <div class="wish-card">
-                    <h4>ayam</h4>
+                    <h4>caca</h4>
                     <p>Lancar sampai hari H ya Bibup! Bahagia selalu kalian berdua. 🤍</p>
                 </div>
                 <div class="wish-card">
-                    <h4>Nazwa</h4>
+                    <h4>rindy</h4>
                     <p>Selamat menempuh hidup baruuu! Can't wait!</p>
                 </div>
             </div>
@@ -198,6 +203,17 @@
             <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #5b7051; margin-top: 10px;">Cinta & Sigit</h3>
         </section>
 
+        <!-- Footer -->
+        <footer class="footer-bar">
+            <p>Made with love by sister bride and friend</p>
+        </footer>
+
+    </div>
+
+    <!-- Lightbox Pop-up -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Zoom Foto">
     </div>
 
     <script src="script.js"></script>

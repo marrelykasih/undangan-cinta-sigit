@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- 1. LOGIKA AMPLOP ---
+    // --- 1. AMBIL NAMA TAMU DARI URL ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to');
+    if (guestName) {
+        document.getElementById('guest-name').innerText = guestName;
+    }
+
+    // --- 2. LOGIKA AMPLOP ---
     const btnBuka = document.getElementById('btn-buka');
     const coverScreen = document.getElementById('envelope-screen');
     const mainContent = document.getElementById('main-invitation');
@@ -25,7 +32,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- 2. LOGIKA LIGHTBOX FOTO GALERI ---
+    // --- 3. LOGIKA PESAN (LOCAL STORAGE) ---
+    const wishesBoard = document.getElementById('wishes-board');
+    
+    function loadWishes() {
+        const savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || [];
+        savedWishes.forEach(wish => {
+            const card = document.createElement('div');
+            card.className = 'wish-card';
+            card.innerHTML = `<h4>${wish.nama}</h4><p>${wish.pesan}</p>`;
+            wishesBoard.prepend(card); // Masukin di atas
+        });
+    }
+    loadWishes();
+
+    window.kirimRSVP = function() {
+        const nama = document.getElementById('nama-rsvp').value;
+        const ucapan = document.getElementById('ucapan-rsvp').value;
+        const hadir = document.getElementById('kehadiran-rsvp').value;
+        const jumlah = document.getElementById('jumlah-tamu').value || 1;
+
+        if(!nama || !ucapan || !hadir) {
+            alert("Mohon lengkapi data nama, ucapan, dan kehadiran ya!");
+            return;
+        }
+
+        // Simpan ucapan ke LocalStorage biar ga hilang di browser ini
+        const savedWishes = JSON.parse(localStorage.getItem('wedding_wishes')) || [];
+        savedWishes.push({ nama: nama, pesan: ucapan });
+        localStorage.setItem('wedding_wishes', JSON.stringify(savedWishes));
+        
+        // Tampilkan langsung di layar
+        const card = document.createElement('div');
+        card.className = 'wish-card';
+        card.innerHTML = `<h4>${nama}</h4><p>${ucapan}</p>`;
+        wishesBoard.prepend(card);
+
+        // Kirim ke WhatsApp
+        const nomorWA = "6281234567890"; // GANTI NOMOR WA DISINI
+        const teksWA = `Halo, saya *${nama}*.\nKonfirmasi: *${hadir}*\nJumlah Tamu: *${jumlah} orang*\n\nUcapan: "${ucapan}"`;
+        window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(teksWA)}`, '_blank');
+
+        // Reset form
+        document.getElementById('rsvp-form').reset();
+    };
+
+    // --- 4. LOGIKA LIGHTBOX FOTO GALERI ---
     const galleryImages = document.querySelectorAll('.gallery-img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -48,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- 3. LOGIKA EFEK SCROLL ---
+    // --- 5. LOGIKA EFEK SCROLL ---
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const colorObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -61,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const revealElements = document.querySelectorAll('.reveal-color');
     revealElements.forEach(el => { colorObserver.observe(el); });
 
-    // --- 4. LOGIKA COUNTDOWN TIMER (Tahun 2027) ---
+    // --- 6. LOGIKA COUNTDOWN TIMER ---
     const weddingDate = new Date(2027, 0, 27, 8, 0, 0).getTime(); 
 
     const timerInterval = setInterval(function() {
@@ -90,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// --- 5. LOGIKA SALIN REKENING ---
+// --- 7. LOGIKA SALIN REKENING ---
 function copyRekening(elementId) {
     const norek = document.getElementById(elementId).innerText;
     navigator.clipboard.writeText(norek).then(() => {
@@ -98,34 +150,4 @@ function copyRekening(elementId) {
     }).catch(err => {
         alert("Gagal menyalin. Silakan salin manual.");
     });
-}
-
-// --- 6. LOGIKA KIRIM RSVP KE WHATSAPP ---
-function kirimRSVP() {
-    const nama = document.getElementById('nama-rsvp').value;
-    const ucapan = document.getElementById('ucapan-rsvp').value;
-    const kehadiran = document.getElementById('kehadiran-rsvp').value;
-
-    if(!nama || !ucapan || !kehadiran) {
-        alert("Mohon isi nama, ucapan, dan konfirmasi kehadiran dulu ya!");
-        return;
-    }
-
-    // GANTI DENGAN NOMOR WA KAMU (Gunakan awalan 62 tanpa angka 0)
-    const nomorWA = "6283171893048"; 
-    
-    const pesan = `Halo, saya *${nama}*.\n\nSaya ingin mengonfirmasi bahwa saya *${kehadiran}* di acara pernikahan Cinta & Sigit.\n\n*Ucapan & Doa:*\n"${ucapan}"`;
-    const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
-    
-    window.open(linkWA, '_blank');
-
-    const board = document.querySelector('.wishes-board');
-    const newCard = document.createElement('div');
-    newCard.classList.add('wish-card');
-    newCard.innerHTML = `<h4>${nama}</h4><p>${ucapan}</p>`;
-    board.prepend(newCard);
-
-    document.getElementById('nama-rsvp').value = '';
-    document.getElementById('ucapan-rsvp').value = '';
-    document.getElementById('kehadiran-rsvp').value = '';
 }
