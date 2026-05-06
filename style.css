@@ -10,119 +10,187 @@ h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #5b7051; fon
 .full-screen { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 .section { padding: 50px 20px; text-align: center; position: relative; z-index: 10; }
 
-/* Bingkai Foto Awal & Profil */
-.frame-hero { width: 92%; height: 60vh; max-height: 480px; border-radius: 15px; overflow: hidden; border: 4px solid #d4c4b7; margin: 0 auto 20px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-.frame-foto { width: 260px; height: 350px; border-radius: 50%; overflow: hidden; border: 5px solid #d4c4b7; margin: 0 auto 20px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+/* Bingkai Foto */
+.frame-hero { width: 92%; height: 60vh; max-height: 480px; border-radius: 15px; overflow: hidden; border: 4px solid #d4c4b7; margin: 0 auto 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.frame-foto { width: 260px; height: 350px; border-radius: 50%; overflow: hidden; border: 5px solid #d4c4b7; margin: 0 auto 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 .frame-hero img, .frame-foto img { width: 100%; height: 100%; object-fit: cover; }
 
-/* =========================================
-   FRAME BUNGA DI SECTION PROFIL
-   ========================================= */
-.profile { position: relative; overflow: hidden; }
-.profile-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; z-index: 1; }
-.profile-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
-
-/* Animasi Muncul & Warna Umum */
+/* Animasi Reveal */
 .reveal-color { opacity: 0; transform: translateY(30px); transition: all 1s ease-in-out; }
 .reveal-color.colored { opacity: 1; transform: translateY(0); }
-.reveal-color .frame-hero img, .reveal-color .frame-foto img, .reveal-color .profile-frame { filter: grayscale(100%); transition: filter 1.5s ease-in-out; }
-.reveal-color.colored .frame-hero img, .reveal-color.colored .frame-foto img, .reveal-color.colored .profile-frame { filter: grayscale(0%); }
+.reveal-color img:not(.profile-frame) { filter: grayscale(100%); transition: filter 1.5s; }
+.reveal-color.colored img:not(.profile-frame) { filter: grayscale(0%); }
 
-/* --- WARNA SPESIFIK MEMPELAI --- */
-.bride-bg { background-color: #d18a99; color: white; } 
-.groom-bg { background-color: #849a7a; color: white; } 
-.bride-ig { border-color: white; color: white; }
-.bride-ig:hover { background-color: white; color: #d18a99; }
+/* Profile Frames */
+.profile { position: relative; overflow: hidden; }
+.profile-frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; z-index: 1; }
+.profile-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
+.bride-bg { background-color: #d18a99; } .groom-bg { background-color: #849a7a; }
+.ig-handle { margin-top: 15px; font-size: 0.85rem; text-decoration: none; border: 1px solid white; padding: 8px 22px; border-radius: 20px; color: white; display: inline-block; font-weight: 600; }
 
-.hero { background-color: #fcf9f2; }
-.quran-verse { background-color: #fff; padding: 0 30px;}
-.schedule { background-color: #fcf9f2; padding: 0 30px;}
+/* =========================================
+   STORY SECTION: 8 FOTO TALI KETALI
+   ========================================= */
+.story-section { background-color: #fcf9f2; padding: 80px 20px; position: relative; }
+.dove { position: absolute; font-size: 2.2rem; opacity: 0.5; z-index: 5; }
+.dove-left { top: 30px; left: 15px; transform: rotate(-10deg); }
+.dove-right { top: 30px; right: 15px; transform: rotate(10deg) scaleX(-1); }
+.small-title { font-size: 0.7rem; color: #849a7a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 5px; }
 
-.profile h3 { font-size: 1.4rem; margin-bottom: 5px; font-weight: 600; }
-.couple-date { margin-top: 10px; font-weight: 400; color: #5b7051; }
-.verse-text { font-style: italic; line-height: 1.8; color: #5b7051; margin-bottom: 25px; }
-.verse-reference { font-weight: 700; color: #4a4a4a; }
+.story-container { position: relative; padding: 20px 0; }
+/* Garis Tali Dash Putus-putus */
+.story-container::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; border-left: 2px dashed #849a7a; transform: translateX(-50%); z-index: 1; }
 
-/* --- KARTU LOKASI & MAPS --- */
-.card-schedule { background: #fff; border: 1px solid #d4c4b7; padding: 20px; width: 100%; margin: 10px auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-.card-schedule h3 { color: #5b7051; margin-bottom: 5px; font-size: 1.2rem; }
-.location-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; border: 2px solid #fcf9f2;}
-.map-responsive { overflow: hidden; padding-bottom: 56.25%; position: relative; height: 0; border-radius: 10px; border: 2px solid #fcf9f2; }
-.map-responsive iframe { left: 0; top: 0; height: 100%; width: 100%; position: absolute; }
+.story-item { width: 100%; margin-bottom: 50px; position: relative; z-index: 2; }
+.polaroid-wrapper { width: 100%; display: flex; justify-content: center; }
+.polaroid { background: white; padding: 10px 10px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 210px; }
+.polaroid img { width: 100%; height: 180px; object-fit: cover; display: block; border-radius: 2px; }
+.polaroid p { font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #4a4a4a; text-align: center; margin-top: 15px; }
+.p-left { transform: rotate(-4deg); margin-right: 40px; }
+.p-right { transform: rotate(4deg); margin-left: 40px; }
 
-.ig-handle { margin-top: 15px; font-size: 0.85rem; text-decoration: none; border: 1px solid white; padding: 8px 22px; border-radius: 20px; font-weight: 600; display: inline-block; transition: 0.3s; color: white;}
-.ig-handle:hover { background-color: white; color: #849a7a; }
+/* Timer */
+.timer-section { background: white; padding: 40px 20px; }
+.countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.time-box { background: #849a7a; color: white; width: 65px; padding: 10px; border-radius: 10px; }
+.time-box span { font-size: 1.4rem; font-weight: bold; }
+.time-box p { font-size: 0.6rem; text-transform: uppercase; }
 
-/* --- TIMER COUNTDOWN --- */
-.timer-section { background-color: #fff; padding: 40px 20px; }
-.countdown { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-.time-box { background-color: #849a7a; color: #fff; width: 70px; padding: 15px 0; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-.time-box span { font-size: 1.8rem; font-weight: 700; }
-.time-box p { font-size: 0.7rem; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+/* Lokasi */
+.card-schedule { background: #fff; border: 1px solid #d4c4b7; padding: 20px; border-radius: 15px; margin: 10px auto; }
+.location-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+.map-responsive { overflow: hidden; padding-bottom: 56.25%; position: relative; height: 0; border-radius: 10px; }
+.map-responsive iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* --- GALERI 2 BARIS (ABSTRACT) --- */
-.gallery-running-section { background-color: #fff; padding: 30px 0 60px 0; overflow: hidden; }
-.marquee-container { display: flex; flex-direction: column; gap: 20px; width: 100%; overflow: hidden; white-space: nowrap; padding: 10px 0; }
-.marquee-track { display: inline-flex; gap: 15px; align-items: center; width: max-content;}
+/* Marquee */
+.marquee-container { display: flex; flex-direction: column; gap: 20px; padding: 10px 0; overflow: hidden; }
+.marquee-track { display: inline-flex; gap: 15px; width: max-content; }
 .track-1 { animation: scrollMarquee 35s linear infinite; }
 .track-2 { animation: scrollMarquee 40s linear infinite reverse; } 
-.marquee-track:hover { animation-play-state: paused; }
-
-.gallery-img { width: 130px; height: 170px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: transform 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.gallery-img:hover { transform: scale(1.05); }
-
-.gallery-img.style-2 { width: 110px; height: 140px; transform: translateY(-10px); }
-.gallery-img.style-3 { width: 150px; height: 200px; transform: translateY(10px); }
-
 @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.gallery-img { width: 130px; height: 170px; object-fit: cover; border-radius: 10px; cursor: pointer; }
 
-/* Lightbox Pop-up Foto Membesar */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-.lightbox.show { opacity: 1; pointer-events: auto; }
-.lightbox img { max-width: 90%; max-height: 80vh; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.2); transform: scale(0.8); transition: transform 0.3s; object-fit: contain; }
-.lightbox.show img { transform: scale(1); }
-.close-lightbox { position: absolute; top: 20px; right: 25px; color: white; font-size: 40px; cursor: pointer; font-weight: bold; }
-
-/* --- RSVP & PESAN --- */
-.rsvp-section { background-color: #fcf9f2; }
-.form-container { display: flex; flex-direction: column; gap: 15px; text-align: left; margin-bottom: 40px;}
-.form-container input, .form-container textarea, .form-container select { width: 100%; padding: 15px; border: 1px solid #d4c4b7; border-radius: 10px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; background-color: #fff; z-index: 60;}
+/* Form & RSVP */
+.form-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; text-align: left; }
+.form-container input, .form-container textarea, .form-container select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #d4c4b7; font-family: inherit; }
 .form-row { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; }
+.wishes-board { max-height: 350px; overflow-y: auto; padding: 5px; position: relative; }
+.wish-card { background: #fff; border-left: 5px solid #849a7a; padding: 15px; text-align: left; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
 
-.wishes-board { display: flex; flex-direction: column; gap: 15px; max-height: 350px; overflow-y: auto; padding: 5px; z-index: 60; position: relative;}
-.wish-card { background: #fff; border-left: 5px solid #849a7a; padding: 15px; text-align: left; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-.wish-card h4 { color: #5b7051; font-size: 1rem; margin-bottom: 5px; }
-.wish-card p { font-size: 0.85rem; line-height: 1.5; color: #4a4a4a; }
+/* Hadiah */
+.gift-section {
+    background-color: #849a7a; /* Latar hijau sage sesuai tema */
+    padding: 60px 20px;
+}
 
-/* --- KIRIM HADIAH --- */
-.gift-section { background-color: #849a7a; color: white; }
-.gift-wrapper { display: flex; flex-direction: column; gap: 20px; margin-top: 20px;}
-.gift-card { background-color: #fff; color: #4a4a4a; padding: 25px; border-radius: 15px; margin: 0 auto; width: 100%; max-width: 350px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); position: relative; z-index: 60;}
+.gift-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
 
-/* --- TOMBOL --- */
-.btn { padding: 12px 35px; background-color: #5b7051; border: 2px solid #5b7051; color: #ffffff; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-block; box-shadow: 0 4px 10px rgba(91, 112, 81, 0.3); font-family: 'Montserrat', sans-serif; position: relative; z-index: 60;}
-.btn:hover { background-color: #fff; color: #5b7051; }
-.btn-outline { background: transparent; border: 2px solid #5b7051; color: #5b7051; padding: 8px 20px; margin-top: 15px; border-radius: 20px; font-weight: 600; width: 100%; box-shadow: none;}
-.btn-outline:hover { background: #5b7051; color: white; }
-.btn-rsvp { width: 100%; margin-top: 10px; }
+/* Kartu Putih Rekening */
+.gift-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    color: #444;
+    transition: transform 0.3s ease;
+}
 
-/* --- FOOTER BAR --- */
-.footer-bar { background-color: #5b7051; color: white; padding: 20px; text-align: center; font-size: 0.8rem; letter-spacing: 1px; width: 100%; }
+.gift-card:hover {
+    transform: translateY(-5px);
+}
 
-/* --- AMPLOP & GUEST INFO --- */
-.cover-screen { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; height: 100vh; background-image: url('bg-amplop.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1s ease-in-out; overflow: hidden; }
+/* Tombol Salin Versi Garis Hijau */
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid #5b7051;
+    color: #5b7051;
+    padding: 10px 25px;
+    border-radius: 25px;
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-outline:hover {
+    background: #5b7051;
+    color: white;
+}
+
+/* Tombol Global */
+.btn { padding: 12px 35px; background: #5b7051; color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; }
+.btn-outline { background: transparent; border: 2px solid #5b7051; color: #5b7051; margin-top: 15px; border-radius: 20px; width: 100%; }
+.footer-bar { background: #5b7051; color: white; padding: 20px; text-align: center; font-size: 0.8rem; letter-spacing: 1px; width: 100%; }
+
+/* Amplop & Guest */
+.cover-screen { position: fixed; inset: 0; background-image: url('bg-amplop.jpg'); background-size: cover; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; transition: 1s; }
 .envelope-container { position: relative; width: 300px; height: 200px; perspective: 1000px; margin-bottom: 20px; }
-.envelope-back { position: absolute; inset: 0; background-color: #849a7a; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-.envelope-front { position: absolute; bottom: 0; left: 0; width: 0; height: 0; border-left: 150px solid #738a68; border-right: 150px solid #738a68; border-bottom: 120px solid #5b7051; border-top: 80px solid transparent; z-index: 3; border-radius: 0 0 8px 8px; }
-.flap { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 110px solid #849a7a; transform-origin: top; transition: transform 0.6s ease-in-out, z-index 0.6s; z-index: 4; }
+.envelope-back { position: absolute; inset: 0; background: #849a7a; border-radius: 8px; }
+.envelope-front { position: absolute; bottom: 0; width: 0; height: 0; border-left: 150px solid #738a68; border-right: 150px solid #738a68; border-bottom: 120px solid #5b7051; border-top: 80px solid transparent; z-index: 3; }
+.flap { position: absolute; top: 0; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 110px solid #849a7a; transform-origin: top; transition: 0.6s; z-index: 4; }
 .flap.open { transform: rotateX(180deg); z-index: 1; }
-.letter { position: absolute; top: 10px; left: 10px; width: 280px; height: 180px; background-color: #fff; z-index: 2; border-radius: 5px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #5b7051; transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; }
+.letter { position: absolute; top: 10px; left: 10px; width: 280px; height: 180px; background: white; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.8s; }
 .letter.pull-out { transform: translateY(-140px); z-index: 5; }
 .letter.zoom-in { transform: translateY(-80px) scale(1.4); opacity: 0; }
+
+.guest-info { text-align: center; z-index: 10; margin-bottom: 30px; }
+.guest-info p { font-size: 0.8rem; color: #5b7051; font-weight: 600; margin-bottom: 2px; }
+.guest-info h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #5b7051; }
+#btn-buka { position: relative; z-index: 10; }
+
+/* Lightbox */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; display: none; justify-content: center; align-items: center; }
+.lightbox.show { display: flex; }
+.lightbox img { max-width: 90%; max-height: 80vh; border-radius: 10px; }
+.close-lightbox { position: absolute; top: 20px; right: 25px; color: white; font-size: 40px; cursor: pointer; }
 .hidden { display: none !important; }
 
-/* Nama Tamu */
-/* Nama Tamu */
-.guest-info { text-align: center; z-index: 10; margin-bottom: 30px; }
-.guest-info p { font-size: 0.8rem; margin-bottom: 2px; color: #5b7051; font-weight: 600; }
-.guest-info h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #5b7051; margin-bottom: 0; }
+/* Style untuk Section Penutup */
+.closing-section {
+    background-color: #fcf9f2;
+    padding: 80px 20px;
+}
+
+.closing-box {
+    background: white;
+    padding: 50px 30px;
+    border-radius: 30px;
+    border: 1px solid #d4c4b7;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 380px;
+}
+
+.closing-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.closing-sub {
+    font-size: 0.85rem;
+    color: #849a7a;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.closing-signature p {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.closing-signature h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: #5b7051;
+}
