@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Cinta & Sigit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Audio Player -->
+    <audio id="bg-music" loop>
+        <source src="lagu-romantis.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Halaman Cover / Amplop -->
+    <div id="envelope-screen" class="cover-screen">
+        <div class="envelope-container">
+            <div class="envelope-back"></div>
+            <div class="letter">
+                <p class="small-text">The Wedding of</p>
+                <h1 class="main-names-small">Cinta & Sigit</h1>
+            </div>
+            <div class="flap"></div>
+            <div class="envelope-front"></div>
+        </div>
+        <button id="btn-buka" class="btn">Buka Undangan</button>
+    </div>
+
+    <!-- Isi Undangan Utama -->
+    <div id="main-invitation" class="main-content hidden">
+        
+        <!-- Gambar Utama (Kotak Besar) -->
+        <section class="section hero reveal-color full-screen">
+            <div class="frame-hero">
+                <img src="foto-utama.jpg" alt="Cinta & Sigit">
+            </div>
+            <div class="overlay-text-bottom">
+                <h2 class="main-names-small">Cinta & Sigit</h2>
+                <p class="couple-date">Minggu, 27 Januari 2026</p>
+            </div>
+        </section>
+
+        <!-- Ayat Suci -->
+        <section class="section quran-verse full-screen">
+            <p class="verse-text">"Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya..."</p>
+            <span class="verse-reference">Q.S. Ar-Rum: 21</span>
+        </section>
+
+        <!-- Mempelai Wanita (Oval) -->
+        <section class="section profile full-screen reveal-color">
+            <p class="title-label">The Bride</p>
+            <div class="frame-foto">
+                <img src="foto-wanita.jpg" alt="Hervina Cinta Risky">
+            </div>
+            <h3>Hervina Cinta Risky</h3>
+            <a href="https://instagram.com/hervinacinta_" class="ig-handle" target="_blank">@hervinacinta_</a>
+        </section>
+
+        <!-- Mempelai Pria (Oval) -->
+        <section class="section profile full-screen reveal-color">
+            <p class="title-label">The Groom</p>
+            <div class="frame-foto">
+                <img src="foto-pria.jpg" alt="Sigit Nurmajid">
+            </div>
+            <h3>Sigit Nurmajid</h3>
+            <a href="https://instagram.com/sigitnurmajid13" class="ig-handle" target="_blank">@sigitnurmajid13</a>
+        </section>
+
+        <!-- Jadwal Resepsi -->
+        <section class="section schedule full-screen">
+            <h2>Jadwal Resepsi</h2>
+            <div class="card-schedule">
+                <h3>Akad Nikah</h3>
+                <p>Minggu, 27 Januari 2026<br>08.00 WIB - Selesai</p>
+            </div>
+            <div class="card-schedule">
+                <h3>Resepsi</h3>
+                <p>Minggu, 27 Januari 2026<br>11.00 WIB - Selesai</p>
+            </div>
+            <p class="location-text">Lokasi: Gedung Pernikahan Impian</p>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
