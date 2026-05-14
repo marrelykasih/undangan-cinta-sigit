@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('wedding_wishes', JSON.stringify(saved));
         loadWishes();
 
-        const wa = "6281234567890"; // GANTI NOMOR WA KAMU DI SINI
+        const wa = "6283171893048"; // GANTI NOMOR WA KAMU DI SINI
         const msg = `Halo, saya *${n}*.\nKonfirmasi: *${h}*\nJumlah: *${j} orang*\n\nUcapan: "${p}"`;
         window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank');
         document.getElementById('rsvp-form').reset();
