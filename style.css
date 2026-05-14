@@ -10,211 +10,133 @@ h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #5b7051; fon
 .full-screen { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 .section { padding: 50px 20px; text-align: center; position: relative; z-index: 10; }
 
-/* Bingkai Foto */
+.btn { padding: 12px 35px; background: #5b7051; color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.btn:hover { background-color: #fff; color: #5b7051; }
+
 .frame-hero { width: 92%; height: 60vh; max-height: 480px; border-radius: 15px; overflow: hidden; border: 4px solid #d4c4b7; margin: 0 auto 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 .frame-foto { width: 260px; height: 350px; border-radius: 50%; overflow: hidden; border: 5px solid #d4c4b7; margin: 0 auto 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 .frame-hero img, .frame-foto img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Animasi Reveal */
 .reveal-color { opacity: 0; transform: translateY(30px); transition: all 1s ease-in-out; }
 .reveal-color.colored { opacity: 1; transform: translateY(0); }
-.reveal-color img:not(.profile-frame) { filter: grayscale(100%); transition: filter 1.5s; }
-.reveal-color.colored img:not(.profile-frame) { filter: grayscale(0%); }
+.reveal-color img:not(.profile-frame):not(#flower-spin) { filter: grayscale(100%); transition: filter 1.5s; }
+.reveal-color.colored img:not(.profile-frame):not(#flower-spin) { filter: grayscale(0%); }
 
-/* Profile Frames */
 .profile { position: relative; overflow: hidden; }
 .profile-frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; z-index: 1; }
 .profile-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
-.bride-bg { background-color: #d18a99; } .groom-bg { background-color: #849a7a; }
-.ig-handle { margin-top: 15px; font-size: 0.85rem; text-decoration: none; border: 1px solid white; padding: 8px 22px; border-radius: 20px; color: white; display: inline-block; font-weight: 600; }
+.bride-bg { background-color: #d18a99; color: white; } 
+.groom-bg { background-color: #849a7a; color: white; }
+.ig-handle { margin-top: 15px; font-size: 0.85rem; text-decoration: none; border: 1px solid white; padding: 8px 22px; border-radius: 20px; color: white; display: inline-block; font-weight: 600; transition: 0.3s; }
 
-/* =========================================
-   STORY SECTION: 8 FOTO TALI KETALI
-   ========================================= */
-.story-section { background-color: #fcf9f2; padding: 80px 20px; position: relative; }
+.timer-section { background-color: #fff; padding: 40px 20px; }
+.countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.time-box { background-color: #849a7a; color: white; width: 65px; padding: 10px; border-radius: 10px; }
+.time-box span { font-size: 1.4rem; font-weight: bold; }
+.time-box p { font-size: 0.6rem; text-transform: uppercase; margin-top: 5px; }
+
+/* AYAT SUCI (BG PUTIH, TEKS IJO, PELAN, BUNGA HILANG) */
+.quran-verse { position: relative; overflow: hidden; background-color: #fff; padding: 0; display: flex; align-items: center; justify-content: center; z-index: 10; }
+.door { position: absolute; top: 0; width: 50%; height: 100%; background-color: #849a7a; z-index: 3; transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.door-left { left: 0; border-right: 1px solid #d4c4b7; }
+.door-right { right: 0; border-left: 1px solid #d4c4b7; }
+.flower-handle { position: absolute; top: 50%; left: 0; transform: translate(-50%, -50%); z-index: 5; width: 140px; height: 140px; pointer-events: none; transition: opacity 0.8s ease-in-out; }
+#flower-spin { width: 100%; height: 100%; object-fit: contain; transition: transform 0.1s linear; }
+
+#quran-section.door-open .door-left { transform: translateX(-100%); }
+#quran-section.door-open .door-right { transform: translateX(100%); }
+#quran-section.door-open .flower-handle { opacity: 0; transition-delay: 0.2s; }
+
+.quran-content { position: relative; z-index: 2; padding: 0 30px; opacity: 0; transition: opacity 1.2s ease-in-out; }
+#quran-section.door-open .quran-content { opacity: 1; transition-delay: 0.3s; }
+.quran-content .verse-text { font-style: italic; line-height: 1.8; color: #5b7051; margin-bottom: 25px; }
+.quran-content .verse-reference { font-weight: 700; color: #5b7051; }
+
+/* STORY & POLAROID */
+.story-section { background-color: #fcf9f2; padding: 80px 20px; position: relative; z-index: 10; }
+.story-header-box { background-color: #849a7a; padding: 20px 40px; border-radius: 15px; display: inline-block; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.story-container { position: relative; padding: 20px 0; }
+.story-container::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; border-left: 2px dashed #849a7a; transform: translateX(-50%); z-index: 1; }
+.story-item { width: 100%; margin-bottom: 50px; position: relative; z-index: 2; }
+.polaroid-wrapper { width: 100%; display: flex; justify-content: center; }
+.polaroid { background: white; padding: 10px 10px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 210px; margin: 0 auto;}
+.polaroid img { width: 100%; height: 180px; object-fit: cover; }
+.polaroid p { font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #4a4a4a; text-align: center; margin-top: 15px; }
+.p-left { transform: rotate(-4deg); }
+.p-right { transform: rotate(4deg); }
 .dove { position: absolute; font-size: 2.2rem; opacity: 0.5; z-index: 5; }
 .dove-left { top: 30px; left: 15px; transform: rotate(-10deg); }
 .dove-right { top: 30px; right: 15px; transform: rotate(10deg) scaleX(-1); }
 .small-title { font-size: 0.7rem; color: #849a7a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 5px; }
 
-.story-container { position: relative; padding: 20px 0; }
-/* Garis Tali Dash Putus-putus */
-.story-container::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; border-left: 2px dashed #849a7a; transform: translateX(-50%); z-index: 1; }
-
-.story-item { width: 100%; margin-bottom: 50px; position: relative; z-index: 2; }
-.polaroid-wrapper { width: 100%; display: flex; justify-content: center; }
-.polaroid { background: white; padding: 10px 10px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 210px; }
-.polaroid img { width: 100%; height: 180px; object-fit: cover; display: block; border-radius: 2px; }
-.polaroid p { font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #4a4a4a; text-align: center; margin-top: 15px; }
-.p-left { transform: rotate(-4deg); margin-right: 40px; }
-.p-right { transform: rotate(4deg); margin-left: 40px; }
-
-/* Timer */
-.timer-section { background: white; padding: 40px 20px; }
-.countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-.time-box { background: #849a7a; color: white; width: 65px; padding: 10px; border-radius: 10px; }
-.time-box span { font-size: 1.4rem; font-weight: bold; }
-.time-box p { font-size: 0.6rem; text-transform: uppercase; }
-
-/* Lokasi */
+/* LOKASI JADWAL */
 .card-schedule { background: #fff; border: 1px solid #d4c4b7; padding: 20px; border-radius: 15px; margin: 10px auto; }
 .location-img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
 .map-responsive { overflow: hidden; padding-bottom: 56.25%; position: relative; height: 0; border-radius: 10px; }
 .map-responsive iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* Marquee */
+/* =========================================
+   MARQUEE GALERI (3 Baris & Ukuran Acak Estetik)
+   ========================================= */
 .marquee-container { display: flex; flex-direction: column; gap: 20px; padding: 10px 0; overflow: hidden; }
-.marquee-track { display: inline-flex; gap: 15px; width: max-content; }
+.marquee-track { display: inline-flex; gap: 15px; width: max-content; align-items: center; }
+
 .track-1 { animation: scrollMarquee 35s linear infinite; }
 .track-2 { animation: scrollMarquee 40s linear infinite reverse; } 
-@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-.gallery-img { width: 130px; height: 170px; object-fit: cover; border-radius: 10px; cursor: pointer; }
+.track-3 { animation: scrollMarquee 30s linear infinite; } /* Baris ke-3 baru */
 
-/* Form & RSVP */
+@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+.gallery-img { width: 130px; height: 170px; object-fit: cover; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+.gallery-img:hover { transform: scale(1.05); }
+
+/* Kodingan ini yang bikin ukurannya jadi random */
+.gallery-img.style-2 { height: 120px; margin-top: 20px; }
+.gallery-img.style-3 { height: 210px; margin-top: -20px; }
+
+/* RSVP */
 .form-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; text-align: left; }
-.form-container input, .form-container textarea, .form-container select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #d4c4b7; font-family: inherit; }
+.form-container input, .form-container textarea, .form-container select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #d4c4b7; font-family: inherit; background-color: #fff;}
 .form-row { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; }
 .wishes-board { max-height: 350px; overflow-y: auto; padding: 5px; position: relative; }
 .wish-card { background: #fff; border-left: 5px solid #849a7a; padding: 15px; text-align: left; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+.wish-card h4 { color: #5b7051; font-size: 1rem; margin-bottom: 5px; }
+.wish-card p { font-size: 0.85rem; line-height: 1.5; color: #4a4a4a; }
 
-/* Hadiah */
-.gift-section {
-    background-color: #849a7a; /* Latar hijau sage sesuai tema */
-    padding: 60px 20px;
-}
+/* REKENING HADIAH */
+.gift-section { background-color: #849a7a; padding: 60px 20px; }
+.gift-wrapper { display: flex; flex-direction: column; gap: 20px; align-items: center; margin-top: 20px; }
+.gift-card { background: white; padding: 30px 20px; border-radius: 20px; width: 100%; max-width: 350px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); color: #444; transition: transform 0.3s ease; }
+.gift-card:hover { transform: translateY(-5px); }
+.btn-outline { background: transparent; border: 1.5px solid #5b7051; color: #5b7051; padding: 10px 25px; border-radius: 25px; width: 100%; font-weight: 600; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+.btn-outline:hover { background: #5b7051; color: white; }
 
-.gift-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
+/* PENUTUP */
+.closing-section { background-color: #fcf9f2; padding: 80px 20px; }
+.closing-box { background: white; padding: 50px 30px; border-radius: 30px; border: 1px solid #d4c4b7; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 380px; margin: 0 auto;}
+.closing-text { font-size: 0.9rem; line-height: 1.8; color: #555; margin-bottom: 30px; }
+.closing-signature p { font-size: 0.85rem; color: #777; margin-bottom: 10px; }
+.closing-signature h3 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #5b7051; }
+.footer-bar { background: #5b7051; color: white; padding: 20px; text-align: center; font-size: 0.8rem; width: 100%; }
 
-/* Kartu Putih Rekening */
-.gift-card {
-    background: white;
-    padding: 30px 20px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 350px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    color: #444;
-    transition: transform 0.3s ease;
-}
-
-.gift-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Tombol Salin Versi Garis Hijau */
-.btn-outline {
-    background: transparent;
-    border: 1.5px solid #5b7051;
-    color: #5b7051;
-    padding: 10px 25px;
-    border-radius: 25px;
-    width: 100%;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.btn-outline:hover {
-    background: #5b7051;
-    color: white;
-}
-
-/* Tombol Global */
-.btn { padding: 12px 35px; background: #5b7051; color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; }
-.btn-outline { background: transparent; border: 2px solid #5b7051; color: #5b7051; margin-top: 15px; border-radius: 20px; width: 100%; }
-.footer-bar { background: #5b7051; color: white; padding: 20px; text-align: center; font-size: 0.8rem; letter-spacing: 1px; width: 100%; }
-
-/* Amplop & Guest */
-.cover-screen { position: fixed; inset: 0; background-image: url('bg-amplop.jpg'); background-size: cover; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; transition: 1s; }
-.envelope-container { position: relative; width: 300px; height: 200px; perspective: 1000px; margin-bottom: 20px; }
+/* AMPLOP & GUEST */
+.cover-screen { position: fixed; inset: 0; background-image: url('bg-amplop.jpg'); background-size: cover; background-position: center; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; transition: 1s; }
+.envelope-container { position: relative; width: 300px; height: 200px; perspective: 1000px; margin-bottom: 30px; }
 .envelope-back { position: absolute; inset: 0; background: #849a7a; border-radius: 8px; }
 .envelope-front { position: absolute; bottom: 0; width: 0; height: 0; border-left: 150px solid #738a68; border-right: 150px solid #738a68; border-bottom: 120px solid #5b7051; border-top: 80px solid transparent; z-index: 3; }
-.flap { position: absolute; top: 0; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 110px solid #849a7a; transform-origin: top; transition: 0.6s; z-index: 4; }
+.flap { position: absolute; top: 0; width: 0; height: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 110px solid #849a7a; transform-origin: top; transition: transform 0.6s ease-in-out; z-index: 4; }
 .flap.open { transform: rotateX(180deg); z-index: 1; }
-.letter { position: absolute; top: 10px; left: 10px; width: 280px; height: 180px; background: white; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.8s; }
+.letter { position: absolute; top: 10px; left: 10px; width: 280px; height: 180px; background: white; z-index: 2; border-radius: 5px; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.8s ease-in-out; }
 .letter.pull-out { transform: translateY(-140px); z-index: 5; }
 .letter.zoom-in { transform: translateY(-80px) scale(1.4); opacity: 0; }
-
-.guest-info { text-align: center; z-index: 10; margin-bottom: 30px; }
+.guest-info { text-align: center; z-index: 10; margin-bottom: 20px; }
 .guest-info p { font-size: 0.8rem; color: #5b7051; font-weight: 600; margin-bottom: 2px; }
-.guest-info h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #5b7051; }
+.guest-info h2 { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #5b7051; margin: 0;}
 #btn-buka { position: relative; z-index: 10; }
 
-/* Lightbox */
+/* LIGHTBOX */
 .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; display: none; justify-content: center; align-items: center; }
 .lightbox.show { display: flex; }
 .lightbox img { max-width: 90%; max-height: 80vh; border-radius: 10px; }
 .close-lightbox { position: absolute; top: 20px; right: 25px; color: white; font-size: 40px; cursor: pointer; }
 .hidden { display: none !important; }
-
-/* Style untuk Section Penutup */
-.closing-section {
-    background-color: #fcf9f2;
-    padding: 80px 20px;
-}
-
-.closing-box {
-    background: white;
-    padding: 50px 30px;
-    border-radius: 30px;
-    border: 1px solid #d4c4b7;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    width: 100%;
-    max-width: 380px;
-}
-
-.closing-text {
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.closing-sub {
-    font-size: 0.85rem;
-    color: #849a7a;
-    font-weight: 600;
-    margin-bottom: 30px;
-}
-
-.closing-signature p {
-    font-size: 0.85rem;
-    color: #777;
-    margin-bottom: 10px;
-}
-
-.closing-signature h3 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.8rem;
-    color: #5b7051;
-}
-
-/* =========================================
-   EFEK PINTU & BUNGA MUTER (AYAT SUCI)
-   ========================================= */
-.quran-verse { position: relative; overflow: hidden; background-color: #fcf9f2; padding: 0; display: flex; align-items: center; justify-content: center; }
-
-/* Teks Ayat (Muncul setelah pintu kebuka) */
-.quran-content { position: relative; z-index: 2; padding: 0 30px; opacity: 0; transition: opacity 1.5s ease-in-out 0.8s; }
-.reveal-color.colored .quran-content { opacity: 1; }
-
-/* Desain Pintu */
-.door { position: absolute; top: 0; bottom: 0; width: 50%; background-color: #849a7a; z-index: 3; transition: transform 1.5s ease-in-out; }
-.door-left { left: 0; border-right: 2px solid #d4c4b7; }
-.door-right { right: 0; border-left: 2px solid #d4c4b7; }
-
-/* Animasi Pintu Kebuka */
-.reveal-color.colored .door-left { transform: translateX(-100%); }
-.reveal-color.colored .door-right { transform: translateX(100%); }
-
-/* Bunga Muter di Tengah */
-.flower-center { position: absolute; top: 50%; left: 50%; width: 140px; height: 140px; margin-top: -70px; margin-left: -70px; z-index: 4; transition: opacity 1.5s ease-in-out; }
-
-/* Saat pintu kebuka, bunga memudar & mundur ke belakang jadi background estetik */
-.reveal-color.colored .flower-center { opacity: 0.15; z-index: 1; }

@@ -18,15 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
         btnBuka.style.opacity = '0';
         flap.classList.add('open');
         setTimeout(() => { letter.classList.add('pull-out'); }, 600);
-        setTimeout(() => { 
-            letter.classList.add('zoom-in');
-            coverScreen.style.opacity = '0'; 
-        }, 1600); 
+        setTimeout(() => { letter.classList.add('zoom-in'); coverScreen.style.opacity = '0'; }, 1600); 
         setTimeout(() => { mainContent.classList.remove('hidden'); }, 2000);
         setTimeout(() => { coverScreen.style.display = 'none'; }, 2600);
     });
 
-    // --- 3. RSVP & WISHES (Simpan di browser) ---
+    // --- 3. RSVP & WISHES ---
     const board = document.getElementById('wishes-board');
     function loadWishes() {
         const saved = JSON.parse(localStorage.getItem('wedding_wishes')) || [];
@@ -44,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const n = document.getElementById('nama-rsvp').value;
         const p = document.getElementById('ucapan-rsvp').value;
         const h = document.getElementById('kehadiran-rsvp').value;
-        const j = document.getElementById('jumlah-tamu').value || 1;
-        if(!n || !p || !h) return alert("Lengkapi data dulu ya!");
+        const j = document.getElementById('jumlah-tamu').value; // Dropdown
+        if(!n || !p || !h || !j) return alert("Lengkapi data dulu ya!");
 
         const saved = JSON.parse(localStorage.getItem('wedding_wishes')) || [];
         saved.push({ nama: n, pesan: p });
@@ -58,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('rsvp-form').reset();
     };
 
-    // --- 4. LIGHTBOX & SCROLL ---
-    document.querySelectorAll('.gallery-img, .story-polaroid img').forEach(img => {
+    // --- 4. LIGHTBOX ---
+    document.querySelectorAll('.gallery-img, .polaroid img').forEach(img => {
         img.onclick = () => {
             document.getElementById('lightbox-img').src = img.src;
             document.getElementById('lightbox').classList.add('show');
@@ -67,12 +64,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     document.querySelector('.close-lightbox').onclick = () => document.getElementById('lightbox').classList.remove('show');
 
+    // --- 5. LOGIKA OBSERVER UMUM ---
     const obs = new IntersectionObserver((es) => {
         es.forEach(e => { if (e.isIntersecting) e.target.classList.add('colored'); });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal-color').forEach(el => obs.observe(el));
 
-    // --- 5. TIMER 2027 ---
+    // --- 6. LOGIKA KHUSUS PINTU (MEMAKAI CLASS DOOR-OPEN BIAR GA PUDAR JADI PUTIH) ---
+    const quranObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('door-open'); 
+            } else {
+                entry.target.classList.remove('door-open'); 
+            }
+        });
+    }, { threshold: 0.6 }); 
+    
+    const quranSection = document.getElementById('quran-section');
+    if(quranSection) quranObs.observe(quranSection);
+
+    // --- 7. LOGIKA BUNGA MUTER SAAT SCROLL ---
+    window.addEventListener('scroll', function() {
+        const flower = document.getElementById('flower-spin');
+        if (flower) {
+            flower.style.transform = `rotate(${window.scrollY / 2}deg)`;
+        }
+    });
+
+    // --- 8. TIMER 2027 ---
     const wed = new Date(2027, 0, 27, 8, 0, 0).getTime(); 
     setInterval(() => {
         const d = wed - new Date().getTime();
@@ -87,12 +107,3 @@ function copyRekening(id) {
     const t = document.getElementById(id).innerText;
     navigator.clipboard.writeText(t).then(() => alert("Nomor rekening disalin!"));
 }
-
-// --- LOGIKA BUNGA MUTER SAAT SCROLL ---
-window.addEventListener('scroll', function() {
-    const flower = document.getElementById('flower-spin');
-    if (flower) {
-        // Kecepatan putar bunganya (dibagi 3). Kalau mau lebih lambat, ganti angka 3 jadi 5.
-        flower.style.transform = 'rotate(' + (window.scrollY / 3) + 'deg)';
-    }
-});
