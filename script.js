@@ -87,3 +87,12 @@ function copyRekening(id) {
     const t = document.getElementById(id).innerText;
     navigator.clipboard.writeText(t).then(() => alert("Nomor rekening disalin!"));
 }
+
+// --- LOGIKA BUNGA MUTER SAAT SCROLL ---
+window.addEventListener('scroll', function() {
+    const flower = document.getElementById('flower-spin');
+    if (flower) {
+        // Kecepatan putar bunganya (dibagi 3). Kalau mau lebih lambat, ganti angka 3 jadi 5.
+        flower.style.transform = 'rotate(' + (window.scrollY / 3) + 'deg)';
+    }
+});

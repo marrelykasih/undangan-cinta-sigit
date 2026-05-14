@@ -194,3 +194,27 @@ h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #5b7051; fon
     font-size: 2.8rem;
     color: #5b7051;
 }
+
+/* =========================================
+   EFEK PINTU & BUNGA MUTER (AYAT SUCI)
+   ========================================= */
+.quran-verse { position: relative; overflow: hidden; background-color: #fcf9f2; padding: 0; display: flex; align-items: center; justify-content: center; }
+
+/* Teks Ayat (Muncul setelah pintu kebuka) */
+.quran-content { position: relative; z-index: 2; padding: 0 30px; opacity: 0; transition: opacity 1.5s ease-in-out 0.8s; }
+.reveal-color.colored .quran-content { opacity: 1; }
+
+/* Desain Pintu */
+.door { position: absolute; top: 0; bottom: 0; width: 50%; background-color: #849a7a; z-index: 3; transition: transform 1.5s ease-in-out; }
+.door-left { left: 0; border-right: 2px solid #d4c4b7; }
+.door-right { right: 0; border-left: 2px solid #d4c4b7; }
+
+/* Animasi Pintu Kebuka */
+.reveal-color.colored .door-left { transform: translateX(-100%); }
+.reveal-color.colored .door-right { transform: translateX(100%); }
+
+/* Bunga Muter di Tengah */
+.flower-center { position: absolute; top: 50%; left: 50%; width: 140px; height: 140px; margin-top: -70px; margin-left: -70px; z-index: 4; transition: opacity 1.5s ease-in-out; }
+
+/* Saat pintu kebuka, bunga memudar & mundur ke belakang jadi background estetik */
+.reveal-color.colored .flower-center { opacity: 0.15; z-index: 1; }
