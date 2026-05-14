@@ -64,13 +64,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     document.querySelector('.close-lightbox').onclick = () => document.getElementById('lightbox').classList.remove('show');
 
-    // --- 5. LOGIKA OBSERVER UMUM ---
+   // --- 5. LOGIKA OBSERVER UMUM ---
     const obs = new IntersectionObserver((es) => {
         es.forEach(e => { if (e.isIntersecting) e.target.classList.add('colored'); });
     }, { threshold: 0.15 });
+    // Hapus tulisan :not(.video-section) di baris bawah ini biar videonya mau muncul
     document.querySelectorAll('.reveal-color').forEach(el => obs.observe(el));
 
-    // --- 6. LOGIKA KHUSUS PINTU (MEMAKAI CLASS DOOR-OPEN BIAR GA PUDAR JADI PUTIH) ---
+    // --- 6. LOGIKA KHUSUS PINTU AYAT SUCI ---
     const quranObs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -101,6 +102,21 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("menit").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
         document.getElementById("detik").innerText = Math.floor((d % (1000 * 60)) / 1000);
     }, 1000);
+
+    // --- 9. AUTOPLAY VIDEO SAAT SCROLL ---
+    const wedVideo = document.getElementById('wedding-video');
+    if (wedVideo) {
+        const vidObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    wedVideo.play().catch(e => console.log("Autoplay dicegah browser")); 
+                } else {
+                    wedVideo.pause(); // Pause saat video keluar layar biar ringan
+                }
+            });
+        }, { threshold: 0.5 }); // Sensitif pas setengah kelihatan layarnya
+        vidObs.observe(document.querySelector('.video-section'));
+    }
 });
 
 function copyRekening(id) {
